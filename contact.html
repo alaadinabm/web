@@ -1,40 +1,34 @@
+
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصل بي</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>تواصل</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>علاء الدين آدم أحمد</h1>
-    <p>مطور ويب | مبرمج قواعد بيانات</p>
-</header>
-
 <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">من أنا</a>
-    <a href="services.html">الخدمات</a>
-    <a href="projects.html">الأعمال</a>
-    <a href="contact.html">اتصل بي</a>
-    <a href="blog.html">مدونة</a>
+<a href="index.html">الرئيسية</a>
+<a href="about.html">عني</a>
+<a href="projects.html">المشاريع</a>
+<a href="contact.html">تواصل</a>
 </nav>
 
-<div class="container">
-    
-        <h2>تواصل معي</h2>
-        <p>البريد الإلكتروني: alaadinadam@gmail.com</p>
-        <p>الهاتف: +249122944340</p>
-    
-    <br>
-    <a href="index.html" class="button">الرجوع للرئيسية</a>
-</div>
+<section>
 
-<footer>
-    <p>© 2026 علاء الدين آدم أحمد | alaadinadam@gmail.com | +249122944340</p>
-</footer>
+<h1>تواصل معي</h1>
+<form id="contact-form" onsubmit="handleFormSubmit(event)">
+<input type="text" id="name" placeholder="الاسم" required><br>
+<input type="email" id="email" placeholder="البريد" required><br>
+<textarea id="message" placeholder="رسالتك" required></textarea><br>
+<button type="submit">إرسال</button>
+</form>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
