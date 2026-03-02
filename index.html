@@ -1,331 +1,1767 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>علاء الدين | مطور ويب</title>
+<!doctype html>
+<html lang="ar" dir="rtl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>علاء الدين - مطور ويب</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      direction: rtl;
+      color: #2d3748;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    .app-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .navbar {
+      background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+      box-shadow: 0 8px 32px rgba(30, 60, 114, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-link {
+      color: #e8eef5;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      color: #ffd700;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    }
+    
+    .page-section {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    .page-section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5aa0 100%);
+      color: white;
+      padding: 6rem 2rem;
+      text-align: center;
+      border-radius: 0;
+      margin: 0;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-<style>
-:root{
-  --primary:#0f172a;
-  --secondary:#2563eb;
-  --accent:#38bdf8;
-  --light:#f1f5f9;
-  --white:#ffffff;
-}
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
+      border-radius: 50%;
+      animation: float 12s ease-in-out infinite;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Tahoma, sans-serif;
-  scroll-behavior:smooth;
-}
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent);
+      border-radius: 50%;
+      animation: float 15s ease-in-out infinite reverse;
+    }
 
-body{
-  background:var(--light);
-  color:#111;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-40px) translateX(25px); }
+    }
 
-/* ===== Navbar ===== */
-.navbar{
-  background:var(--primary);
-  color:white;
-  padding:1rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:fixed;
-  width:100%;
-  top:0;
-  z-index:1000;
-}
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.logo{
-  font-size:1.4rem;
-  font-weight:bold;
-  color:var(--accent);
-}
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.nav-links{
-  display:flex;
-  gap:1.5rem;
-}
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+      50% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+    }
 
-.nav-links a{
-  color:white;
-  text-decoration:none;
-  font-weight:500;
-  transition:.3s;
-}
+    .hero-section h2 {
+      position: relative;
+      z-index: 2;
+      font-size: 4.5rem;
+      font-weight: 800;
+      margin: 0 0 1rem 0;
+      animation: slideInDown 0.8s ease-out;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideInDown 0.8s ease-out, glow 3s ease-in-out infinite;
+    }
 
-.nav-links a:hover{
-  color:var(--accent);
-}
+    .hero-subtitle {
+      position: relative;
+      z-index: 2;
+      font-size: 1.5rem;
+      margin: 1rem 0 2.5rem 0;
+      animation: slideInUp 0.9s ease-out 0.2s both;
+      opacity: 0.95;
+      letter-spacing: 0.5px;
+    }
 
-.menu-btn{
-  display:none;
-  font-size:1.8rem;
-  cursor:pointer;
-}
+    .hero-cta {
+      position: relative;
+      z-index: 2;
+      animation: slideInUp 1s ease-out 0.4s both;
+    }
 
-/* ===== Sidebar ===== */
-.sidebar{
-  position:fixed;
-  top:0;
-  right:-260px;
-  width:260px;
-  height:100%;
-  background:var(--white);
-  padding:2rem;
-  box-shadow:-5px 0 15px rgba(0,0,0,.2);
-  transition:.4s;
-  z-index:1100;
-}
+    .hero-section h2, .hero-section p, .hero-section button {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(30, 60, 114, 0.12);
+      margin: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(42, 82, 152, 0.08);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(30, 60, 114, 0.2);
+      border-color: rgba(42, 82, 152, 0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(42, 82, 152, 0.4);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2d3748;
+      font-weight: 600;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e0e7ff;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: inherit;
+      background: #fafbfc;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2a5298;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.1);
+      transform: scale(1.01);
+    }
+    
+    .success-message {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      color: #155724;
+      padding: 1.2rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      display: none;
+      border-left: 4px solid #28a745;
+      font-weight: 500;
+    }
+    
+    .success-message.show {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .footer {
+      background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+      color: #e8eef5;
+      text-align: center;
+      padding: 2rem;
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+    }
+    
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+    }
 
-.sidebar a{
-  display:block;
-  margin:1.2rem 0;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-}
+    /* Gallery Styles */
+    .template-btn {
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 600;
+    }
 
-.sidebar.active{
-  right:0;
-}
+    .template-btn:hover {
+      transform: translateY(-2px);
+    }
 
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.4);
-  display:none;
-  z-index:1000;
-}
+    .active-template {
+      box-shadow: 0 6px 20px rgba(42, 82, 152, 0.4) !important;
+    }
 
-.overlay.show{
-  display:block;
-}
+    /* Modern Template */
+    .gallery-modern {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      padding: 2rem;
+    }
 
-/* ===== Hero ===== */
-.hero{
-  margin-top:80px;
-  padding:4rem 2rem;
-  text-align:center;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:white;
-}
+    .gallery-item-modern {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(30, 60, 114, 0.2);
+      aspect-ratio: 1.3;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+    }
 
-.hero h1{
-  font-size:2.5rem;
-  margin-bottom:1rem;
-}
+    .gallery-item-modern:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(30, 60, 114, 0.35);
+    }
 
-.hero p{
-  font-size:1.2rem;
-  margin-bottom:2rem;
-}
+    .gallery-item-modern .emoji-large {
+      font-size: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
 
-.btn{
-  background:var(--accent);
-  color:#111;
-  padding:.8rem 1.5rem;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:.3s;
-}
+    .gallery-item-modern:hover .emoji-large {
+      transform: scale(1.25) rotate(8deg);
+    }
 
-.btn:hover{
-  background:white;
-}
+    /* Minimal Template */
+    .gallery-minimal {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 2rem;
+    }
 
-/* ===== Section ===== */
-.section{
-  padding:4rem 2rem;
-  text-align:center;
-}
+    .gallery-item-minimal {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(30, 60, 114, 0.1);
+      aspect-ratio: 1.3;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: white;
+      border: 2px solid #e8eef5;
+    }
 
-.section h2{
-  margin-bottom:2rem;
-  color:var(--primary);
-}
+    .gallery-item-minimal:hover {
+      border-color: #2a5298;
+      box-shadow: 0 8px 24px rgba(42, 82, 152, 0.15);
+      transform: translateY(-6px);
+    }
 
-/* ===== Services ===== */
-.services{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:1.5rem;
-}
+    .gallery-item-minimal .content {
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-.card{
-  background:white;
-  padding:2rem;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-  transition:.3s;
-}
+    .gallery-item-minimal .emoji-small {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
 
-.card:hover{
-  transform:translateY(-5px);
-}
+    .gallery-item-minimal h3 {
+      color: #2a5298;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
 
-/* ===== Gallery ===== */
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:1.5rem;
-}
+    .gallery-item-minimal p {
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
 
-.gallery-item{
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-  transition:.3s;
-}
+    /* Gradient Template */
+    .gallery-gradient {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      padding: 2rem;
+    }
 
-.gallery-item:hover{
-  transform:scale(1.03);
-}
+    .gallery-item-gradient {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      aspect-ratio: 1.3;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
 
-.gallery-item img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
+    .gallery-item-gradient.grad1 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
 
-/* ===== Skills ===== */
-.skill{
-  margin-bottom:1rem;
-  text-align:right;
-}
+    .gallery-item-gradient.grad2 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
 
-.progress{
-  background:#ddd;
-  border-radius:8px;
-  overflow:hidden;
-}
+    .gallery-item-gradient.grad3 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
 
-.progress-bar{
-  height:10px;
-  background:var(--secondary);
-}
+    .gallery-item-gradient.grad4 {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
 
-/* ===== Footer ===== */
-footer{
-  background:var(--primary);
-  color:white;
-  padding:2rem;
-  text-align:center;
-}
+    .gallery-item-gradient.grad5 {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
 
-/* ===== Responsive ===== */
-@media(max-width:768px){
-  .nav-links{
-    display:none;
-  }
-  .menu-btn{
-    display:block;
-  }
-}
-</style>
-</head>
-<body>
+    .gallery-item-gradient.grad6 {
+      background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+    }
 
-<!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    .gallery-item-gradient:hover {
+      transform: scale(1.08) rotate(-2deg) translateY(-8px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    }
 
-<!-- Navbar -->
-<div class="navbar">
-  <div class="logo">علاء الدين</div>
-  <div class="nav-links">
-    <a href="#">الرئيسية</a>
-    <a href="#services">الخدمات</a>
-    <a href="#gallery">الأعمال</a>
-    <a href="#skills">المهارات</a>
-    <a href="#contact">تواصل</a>
+    .gallery-item-gradient .emoji-large {
+      font-size: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Card Template */
+    .gallery-card {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .gallery-item-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 8px 24px rgba(30, 60, 114, 0.12);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(42, 82, 152, 0.08);
+    }
+
+    .gallery-item-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 40px rgba(42, 82, 152, 0.25);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .card-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-title {
+      color: #2a5298;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    /* Animated Template */
+    .gallery-animated {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      padding: 2rem;
+    }
+
+    .gallery-item-animated {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      aspect-ratio: 1.3;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(30, 60, 114, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item-animated::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+
+    .gallery-item-animated:hover::before {
+      left: 100%;
+    }
+
+    .gallery-item-animated:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(30, 60, 114, 0.3);
+    }
+
+    .gallery-item-animated .background {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .gallery-item-animated:hover .background {
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-modern, .gallery-minimal, .gallery-gradient, .gallery-card, .gallery-animated {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+      }
+
+      .navbar .max-w-6xl {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .navbar h1 {
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      .navbar .flex {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        flex: 1;
+        text-align: center;
+        display: none;
+      }
+
+      .hero-section {
+        padding: 3rem 1rem;
+        min-height: auto;
+      }
+
+      .hero-section h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-section::before {
+        width: 400px;
+        height: 400px;
+        top: -30%;
+        right: -20%;
+      }
+
+      .hero-section::after {
+        width: 350px;
+        height: 350px;
+        bottom: -30%;
+        left: -20%;
+      }
+
+      .card {
+        margin: 0.75rem 0;
+        padding: 1.5rem;
+      }
+
+      .max-w-6xl {
+        padding: 1rem 0.5rem;
+      }
+
+      .page-section h2 {
+        font-size: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .grid {
+        gap: 1rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 0.6rem;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+      }
+
+      .sidebar-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+
+      .template-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+      }
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-emoji {
+        font-size: 2.5rem;
+      }
+
+      .gallery-item-modern .emoji-large {
+        font-size: 3.5rem;
+      }
+
+      .gallery-item-gradient .emoji-large {
+        font-size: 3.5rem;
+      }
+
+      .gallery-item-animated .background {
+        font-size: 3.5rem;
+      }
+
+      .footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        max-width: 95%;
+      }
+
+      .close-modal {
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .hero-section {
+        padding: 2rem 0.75rem;
+      }
+
+      .page-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .card h3 {
+        font-size: 1.3rem;
+      }
+
+      .card {
+        padding: 1.2rem;
+      }
+
+      .btn-primary {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+      }
+
+      .success-message {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .template-btn {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.75rem;
+      }
+
+      .max-w-6xl {
+        padding: 0.5rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      animation: fadeIn 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 18px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
+      position: relative;
+      animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #2d3748;
+      background: none;
+      border: none;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-modal:hover {
+      color: white;
+      background-color: #2a5298;
+      transform: rotate(90deg);
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      right: -300px;
+      top: 0;
+      width: 280px;
+      height: 100%;
+      background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+      box-shadow: -8px 0 30px rgba(30, 60, 114, 0.3);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      padding-top: 80px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-menu li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar-menu-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 1.5rem;
+      color: rgba(232, 238, 245, 0.8);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border-right: 4px solid transparent;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .sidebar-menu-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffd700;
+      border-right-color: #ffd700;
+      padding-left: 1.8rem;
+      transform: translateX(-5px);
+      box-shadow: inset -4px 0 12px rgba(255, 215, 0, 0.2);
+    }
+
+    .sidebar-menu-link.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffd700;
+      border-right-color: #ffd700;
+      box-shadow: inset -4px 0 15px rgba(255, 215, 0, 0.25);
+    }
+
+    .sidebar-menu-icon {
+      font-size: 1.3rem;
+      min-width: 24px;
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.5rem;
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+    }
+
+    .sidebar-toggle:hover {
+      transform: scale(1.12) rotate(15deg);
+      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+    }
+
+    .sidebar-toggle:active {
+      transform: scale(0.95);
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: none;
+      z-index: 999;
+    }
+
+    .sidebar-overlay.show {
+      display: block;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 250px;
+      }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper">
+   <!-- Sidebar Overlay -->
+   <div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div><!-- Sidebar Navigation -->
+   <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-menu">
+     <li><a class="sidebar-menu-link active" onclick="showPageFromSidebar('home')"><span class="sidebar-menu-icon">🏠</span> الرئيسية</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('about')"><span class="sidebar-menu-icon">👤</span> عني</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('projects')"><span class="sidebar-menu-icon">💼</span> المشاريع</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('skills')"><span class="sidebar-menu-icon">⚙️</span> المهارات</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('experience')"><span class="sidebar-menu-icon">📚</span> الخبرة</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('services')"><span class="sidebar-menu-icon">🎯</span> الخدمات</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('gallery')"><span class="sidebar-menu-icon">🖼️</span> معرض</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('dashboard')"><span class="sidebar-menu-icon">⚙️</span> لوحة التحكم</a></li>
+     <li><a class="sidebar-menu-link" onclick="showPageFromSidebar('contact')"><span class="sidebar-menu-icon">📞</span> تواصل</a></li>
+    </ul>
+   </aside><!-- Sidebar Toggle Button --> <button id="sidebar-toggle" class="sidebar-toggle" onclick="toggleSidebar()">☰</button> <!-- Navigation Bar -->
+   <nav class="navbar">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center flex-wrap gap-2">
+     <h1 class="text-white font-bold text-2xl">علاء الدين</h1>
+     <div class="flex gap-2 flex-wrap justify-end">
+      <button class="nav-link active" onclick="showPage('home')">🏠 الرئيسية</button> <button class="nav-link" onclick="showPage('about')">👤 عني</button> <button class="nav-link" onclick="showPage('projects')">💼 المشاريع</button> <button class="nav-link" onclick="showPage('skills')">⚙️ المهارات</button> <button class="nav-link" onclick="showPage('experience')">📚 الخبرة</button> <button class="nav-link" onclick="showPage('services')">🎯 الخدمات</button> <button class="nav-link" onclick="showPage('gallery')">🖼️ معرض</button> <button class="nav-link" onclick="showPage('contact')">📞 تواصل</button>
+     </div>
+    </div>
+   </nav><!-- Content Area -->
+   <div class="content-area">
+    <!-- Home Page -->
+    <div id="home" class="page-section active">
+     <div class="hero-section">
+      <h2 id="hero-title">مرحباً، أنا علاء الدين ✨</h2>
+      <p id="hero-subtitle" class="hero-subtitle">مطور ويب متخصص | خبير قواعد البيانات</p>
+      <div class="hero-cta">
+       <button class="btn-primary text-lg" onclick="showPage('contact')" style="padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 12px; box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);">دعنا نتحدث 🚀</button>
+      </div>
+     </div>
+     <div class="max-w-6xl mx-auto p-4 mt-8">
+      <div class="card text-center">
+       <h3 class="text-2xl font-bold text-blue-600 mb-4">🚀 مرحباً بك في موقعي</h3>
+       <p id="about-preview" class="text-gray-700 text-lg">هنا ستجد معلومات عني وعملي وخدماتي المختلفة</p>
+      </div><!-- Gallery Preview Section -->
+      <div style="margin-top: 3rem;">
+       <h3 style="font-size: 2.5rem; font-weight: bold; color: #1e3c72; text-align: center; margin-bottom: 2rem; animation: slideInDown 0.8s ease-out;">أحدث أعمالي ✨</h3>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;"><!-- Gallery Item 1 -->
+        <div style="
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.1s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(102, 126, 234, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(102, 126, 234, 0.3)'" onclick="openModal(0)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite;">
+          🎨
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">تصميم UI/UX</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">واجهات جميلة وفعالة</p>
+        </div><!-- Gallery Item 2 -->
+        <div style="
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.2s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(245, 87, 108, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(245, 87, 108, 0.3)'" onclick="openModal(1)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite 0.2s;">
+          💻
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">تطوير المواقع</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">مواقع حديثة وسريعة</p>
+        </div><!-- Gallery Item 3 -->
+        <div style="
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.3s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(79, 172, 254, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(79, 172, 254, 0.3)'" onclick="openModal(2)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite 0.4s;">
+          📱
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">تطبيقات الويب</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">تطبيقات تفاعلية</p>
+        </div><!-- Gallery Item 4 -->
+        <div style="
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(67, 233, 123, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.4s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(67, 233, 123, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(67, 233, 123, 0.3)'" onclick="openModal(3)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite 0.6s;">
+          🗄️
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">قواعد البيانات</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">أنظمة قوية وآمنة</p>
+        </div><!-- Gallery Item 5 -->
+        <div style="
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(250, 112, 154, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.5s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(250, 112, 154, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(250, 112, 154, 0.3)'" onclick="openModal(4)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite 0.8s;">
+          🚀
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">الأتمتة والأداء</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">تحسين السرعة</p>
+        </div><!-- Gallery Item 6 -->
+        <div style="
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(48, 207, 208, 0.3);
+            transform: translateY(0);
+            animation: slideInUp 0.9s ease-out 0.6s both;
+          " onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 25px 50px rgba(48, 207, 208, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 35px rgba(48, 207, 208, 0.3)'" onclick="openModal(5)">
+         <div style="font-size: 4rem; margin-bottom: 1rem; animation: bounce 2s infinite 1s;">
+          🔒
+         </div>
+         <h4 style="color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">الأمان والحماية</h4>
+         <p style="color: rgba(255,255,255, 0.9); font-size: 0.95rem;">حماية عالية</p>
+        </div>
+       </div>
+       <div style="text-align: center; margin-top: 2rem;"><button class="btn-primary" onclick="showPage('gallery')" style="padding: 1rem 2.5rem; font-size: 1rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(42, 82, 152, 0.3);">عرض جميع الأعمال →</button>
+       </div>
+      </div>
+     </div>
+    </div><!-- About Page -->
+    <div id="about" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">عني</h2>
+      <div class="card">
+       <h3 class="text-2xl font-bold mb-4">علاء الدين ادم احمد</h3>
+       <p id="about-full-text" class="text-gray-700 text-lg leading-relaxed mb-6">مطور ويب متخصص وخبير في قواعد البيانات. أعمل على تطوير تطبيقات ويب حديثة وقوية.</p>
+       <div class="grid grid-cols-2 gap-4 mt-6">
+        <div class="p-4 bg-blue-50 rounded-lg">
+         <p class="font-bold text-blue-600">📧 البريد الإلكتروني</p>
+         <p>alaadinadam@gmail.com</p>
+        </div>
+        <div class="p-4 bg-blue-50 rounded-lg">
+         <p class="font-bold text-blue-600">📱 الهاتف</p>
+         <p>+249122944340</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Projects Page -->
+    <div id="projects" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">المشاريع</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">المشروع الأول</h3>
+        <p class="text-gray-700 mb-4">أضف وصف المشروع الأول هنا</p>
+        <p class="text-sm text-gray-500">التقنيات المستخدمة: HTML, CSS, JavaScript</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">المشروع الثاني</h3>
+        <p class="text-gray-700 mb-4">أضف وصف المشروع الثاني هنا</p>
+        <p class="text-sm text-gray-500">التقنيات المستخدمة: React, Node.js</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">المشروع الثالث</h3>
+        <p class="text-gray-700 mb-4">أضف وصف المشروع الثالث هنا</p>
+        <p class="text-sm text-gray-500">التقنيات المستخدمة: Vue.js, Firebase</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">المشروع الرابع</h3>
+        <p class="text-gray-700 mb-4">أضف وصف المشروع الرابع هنا</p>
+        <p class="text-sm text-gray-500">التقنيات المستخدمة: Python, Django</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Skills Page -->
+    <div id="skills" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">المهارات</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-3">تطوير الويب</h3>
+        <ul class="text-gray-700 space-y-2">
+         <li>✓ HTML &amp; CSS</li>
+         <li>✓ JavaScript</li>
+         <li>✓ React.js</li>
+         <li>✓ Vue.js</li>
+        </ul>
+       </div>
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-3">قواعد البيانات</h3>
+        <ul class="text-gray-700 space-y-2">
+         <li>✓ MySQL</li>
+         <li>✓ PostgreSQL</li>
+         <li>✓ MongoDB</li>
+         <li>✓ Firebase</li>
+        </ul>
+       </div>
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-3">Backend</h3>
+        <ul class="text-gray-700 space-y-2">
+         <li>✓ Node.js</li>
+         <li>✓ Python</li>
+         <li>✓ REST APIs</li>
+         <li>✓ Express.js</li>
+        </ul>
+       </div>
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-3">أدوات أخرى</h3>
+        <ul class="text-gray-700 space-y-2">
+         <li>✓ Git &amp; GitHub</li>
+         <li>✓ Docker</li>
+         <li>✓ Linux</li>
+         <li>✓ AWS</li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div><!-- Experience Page -->
+    <div id="experience" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">الخبرة</h2>
+      <div class="space-y-4">
+       <div class="card border-l-4 border-blue-600">
+        <h3 class="text-2xl font-bold text-blue-600 mb-2">الوظيفة الأولى</h3>
+        <p class="text-gray-600 mb-3">الفترة: 2020 - 2021</p>
+        <p class="text-gray-700">وصف الوظيفة والمسؤوليات والإنجازات التي حققتها</p>
+       </div>
+       <div class="card border-l-4 border-blue-600">
+        <h3 class="text-2xl font-bold text-blue-600 mb-2">الوظيفة الثانية</h3>
+        <p class="text-gray-600 mb-3">الفترة: 2021 - 2022</p>
+        <p class="text-gray-700">وصف الوظيفة والمسؤوليات والإنجازات التي حققتها</p>
+       </div>
+       <div class="card border-l-4 border-blue-600">
+        <h3 class="text-2xl font-bold text-blue-600 mb-2">الوظيفة الحالية</h3>
+        <p class="text-gray-600 mb-3">الفترة: 2022 - الآن</p>
+        <p class="text-gray-700">وصف الوظيفة والمسؤوليات والإنجازات الحالية</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Services Page -->
+    <div id="services" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">الخدمات</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">🌐 تطوير المواقع</h3>
+        <p class="text-gray-700">تصميم وتطوير مواقع ويب حديثة وسريعة وآمنة</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">📱 تطوير التطبيقات</h3>
+        <p class="text-gray-700">بناء تطبيقات ويب تفاعلية باستخدام أحدث التقنيات</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">🗄️ تصميم قواعد البيانات</h3>
+        <p class="text-gray-700">تصميم وتطوير قواعد بيانات قوية وآمنة وفعالة</p>
+       </div>
+       <div class="card">
+        <h3 class="text-2xl font-bold text-blue-600 mb-3">🔧 الاستشارات التقنية</h3>
+        <p class="text-gray-700">تقديم استشارات تقنية متخصصة في تطوير الويب</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Gallery Page -->
+    <div id="gallery" class="page-section">
+     <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4 px-4" id="gallery-title">🖼️ معرض أعمالي</h2><!-- Template Selector -->
+      <div class="px-4 mb-6 flex gap-2 flex-wrap justify-center">
+       <button class="template-btn active-template" onclick="switchTemplate('modern')" style="background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 0.75rem 1.25rem; border-radius: 8px;">📐 عصري</button> <button class="template-btn" onclick="switchTemplate('minimal')" style="background: #e8eef5; color: #2d3748; padding: 0.75rem 1.25rem; border-radius: 8px;">✨ بسيط</button> <button class="template-btn" onclick="switchTemplate('gradient')" style="background: #e8eef5; color: #2d3748; padding: 0.75rem 1.25rem; border-radius: 8px;">🌈 متدرج</button> <button class="template-btn" onclick="switchTemplate('card')" style="background: #e8eef5; color: #2d3748; padding: 0.75rem 1.25rem; border-radius: 8px;">🎴 بطاقات</button> <button class="template-btn" onclick="switchTemplate('animated')" style="background: #e8eef5; color: #2d3748; padding: 0.75rem 1.25rem; border-radius: 8px;">🎬 متحرك</button>
+      </div><!-- Gallery Grid -->
+      <div class="gallery-modern" id="gallery-grid">
+      </div>
+     </div>
+    </div><!-- Dashboard Page -->
+    <div id="dashboard" class="page-section">
+     <div class="max-w-6xl mx-auto p-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6 mt-4">⚙️ لوحة التحكم</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-4">📊 الإحصائيات</h3>
+        <div class="space-y-3">
+         <div style="padding: 1rem; background: #f0f4ff; border-radius: 8px; border-right: 4px solid #2a5298;">
+          <p style="color: #6b7280; font-size: 0.9rem;">عدد الرسائل</p>
+          <p style="color: #2a5298; font-size: 1.8rem; font-weight: bold;" id="messages-count">0</p>
+         </div>
+         <div style="padding: 1rem; background: #f0f4ff; border-radius: 8px; border-right: 4px solid #2a5298;">
+          <p style="color: #6b7280; font-size: 0.9rem;">عدد المشاريع</p>
+          <p style="color: #2a5298; font-size: 1.8rem; font-weight: bold;" id="projects-count">0</p>
+         </div>
+        </div>
+       </div>
+       <div class="card">
+        <h3 class="text-xl font-bold text-blue-600 mb-4">➕ إضافة عنصر جديد</h3>
+        <div class="space-y-2">
+         <button class="btn-primary w-full" onclick="showAddModal('project')" style="margin-bottom: 0.5rem;">+ إضافة مشروع</button> <button class="btn-primary w-full" onclick="showAddModal('skill')" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); margin-bottom: 0.5rem;">+ إضافة مهارة</button> <button class="btn-primary w-full" onclick="showAddModal('service')" style="background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);">+ إضافة خدمة</button>
+        </div>
+       </div>
+      </div>
+      <div class="card">
+       <h3 class="text-xl font-bold text-blue-600 mb-4">📝 الرسائل المستلمة</h3>
+       <div id="messages-list" style="max-height: 400px; overflow-y: auto;">
+        <p style="color: #9ca3af; text-align: center; padding: 2rem;">لا توجد رسائل حتى الآن</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Add Item Modal -->
+    <div id="add-modal" class="modal" onclick="if(event.target === this) closeAddModal()">
+     <div class="modal-content">
+      <button class="close-modal" onclick="closeAddModal()">×</button>
+      <h2 style="color: #2a5298; font-size: 1.8rem; margin-bottom: 1.5rem;" id="modal-title">إضافة عنصر</h2>
+      <form id="add-form" onsubmit="handleAddSubmit(event)">
+       <div class="form-group">
+        <label for="item-emoji">الأيقونة (Emoji)</label> <input type="text" id="item-emoji" name="emoji" required placeholder="مثال: 🎨">
+       </div>
+       <div class="form-group">
+        <label for="item-title">العنوان</label> <input type="text" id="item-title" name="title" required placeholder="أدخل العنوان">
+       </div>
+       <div class="form-group">
+        <label for="item-description">الوصف</label> <input type="text" id="item-description" name="description" required placeholder="أدخل الوصف">
+       </div>
+       <div class="form-group">
+        <label for="item-details">التفاصيل</label> <textarea id="item-details" name="details" rows="4" required placeholder="أدخل التفاصيل الكاملة"></textarea>
+       </div><button type="submit" class="btn-primary w-full">✓ حفظ</button>
+      </form>
+     </div>
+    </div><!-- Modal for Gallery -->
+    <div id="gallery-modal" class="modal" onclick="if(event.target === this) closeModal()">
+     <div class="modal-content"><button class="close-modal" onclick="closeModal()">×</button>
+      <div id="modal-body"><!-- Will be filled by JavaScript -->
+      </div>
+     </div>
+    </div><!-- Contact Page -->
+    <div id="contact" class="page-section">
+     <div class="max-w-2xl mx-auto p-4 mt-4">
+      <h2 class="text-4xl font-bold text-blue-600 mb-6">تواصل معي</h2>
+      <div class="card">
+       <div id="success-message" class="success-message">
+        شكراً! تم استقبال رسالتك بنجاح ✓
+       </div>
+       <form id="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+         <label for="name">الاسم</label> <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+        </div>
+        <div class="form-group">
+         <label for="email">البريد الإلكتروني</label> <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+        </div>
+        <div class="form-group">
+         <label for="phone">الهاتف</label> <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك">
+        </div>
+        <div class="form-group">
+         <label for="message">الرسالة</label> <textarea id="message" name="message" rows="6" required placeholder="اكتب رسالتك هنا"></textarea>
+        </div><button type="submit" class="btn-primary w-full text-lg" id="submit-btn">إرسال الرسالة</button>
+       </form>
+       <div class="mt-8 pt-8 border-t-2 border-blue-200">
+        <h3 class="text-xl font-bold text-blue-600 mb-4">معلومات التواصل</h3>
+        <div class="space-y-3">
+         <p class="text-gray-700"><strong>📧 البريد:</strong> alaadinadam@gmail.com</p>
+         <p class="text-gray-700"><strong>📱 الهاتف:</strong> +249122944340</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Footer -->
+   <footer class="footer">
+    <p>© 2024 علاء الدين ادم احمد. جميع الحقوق محفوظة.</p>
+   </footer>
   </div>
-  <div class="menu-btn" onclick="openSidebar()">☰</div>
-</div>
+  <script>
+    // 🎯 انسخ كل هذا الكود أدناه والصقه في ملف جديد باسم: portfolio.html
+    // ثم احفظ الملف وافتحه في المتصفح!
+    
+    let currentConfig = {};
+    let currentTemplate = 'modern';
+    let allItems = [];
+    let currentItemType = '';
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <a href="#">الرئيسية</a>
-  <a href="#services">الخدمات</a>
-  <a href="#gallery">الأعمال</a>
-  <a href="#skills">المهارات</a>
-  <a href="#contact">تواصل</a>
-</div>
+    // Gallery data
+    let galleryItems = [
+      {
+        title: "تصميم UI/UX",
+        description: "واجهات مستخدم جميلة وفعالة",
+        details: "تصميم واجهات مستخدم احترافية تجمع بين الجمال والوظيفية. استخدام أحدث اتجاهات التصميم مع ضمان تجربة مستخدم ممتازة.",
+        emoji: "🎨",
+        type: "gallery"
+      },
+      {
+        title: "تطوير المواقع",
+        description: "مواقع ويب حديثة وسريعة",
+        details: "تطوير مواقع ويب باستخدام أحدث التقنيات. تركيز على الأداء والأمان والمتوافقية مع جميع الأجهزة.",
+        emoji: "💻",
+        type: "gallery"
+      },
+      {
+        title: "تطبيقات الويب",
+        description: "تطبيقات تفاعلية وديناميكية",
+        details: "بناء تطبيقات ويب تفاعلية باستخدام React و Vue و Angular. تطبيقات تتضمن حالات استخدام معقدة وتتطلب أداء عالي.",
+        emoji: "📱",
+        type: "gallery"
+      },
+      {
+        title: "قواعد البيانات",
+        description: "أنظمة قواعد بيانات قوية",
+        details: "تصميم وتطوير أنظمة قواعد بيانات قوية وآمنة. استخدام MySQL و PostgreSQL و MongoDB مع أفضل الممارسات في تطبيق البيانات.",
+        emoji: "🗄️",
+        type: "gallery"
+      },
+      {
+        title: "الأتمتة والأداء",
+        description: "تحسين الأداء والسرعة",
+        details: "تحسين أداء التطبيقات والمواقع من خلال تقنيات متقدمة. استخدام CDN وcaching والضغط وتقليل حجم الملفات.",
+        emoji: "🚀",
+        type: "gallery"
+      },
+      {
+        title: "الأمان والحماية",
+        description: "أنظمة آمنة وموثوقة",
+        details: "تطبيق أعلى معايير الأمان في تطوير التطبيقات. حماية من الثغرات الشهيرة مثل SQL Injection و XSS وCSRF.",
+        emoji: "🔒",
+        type: "gallery"
+      }
+    ];
 
-<!-- Hero -->
-<section class="hero">
-  <h1>مطور ويب احترافي</h1>
-  <p>أصمم وأطور مواقع وتطبيقات ويب عصرية وسريعة</p>
-  <button class="btn">تواصل معي الآن</button>
-</section>
+    // Render gallery based on template
+    function renderGallery(template) {
+      const grid = document.getElementById('gallery-grid');
+      grid.className = `gallery-${template}`;
+      grid.innerHTML = '';
 
-<!-- Services -->
-<section class="section" id="services">
-  <h2>الخدمات</h2>
-  <div class="services">
-    <div class="card">تصميم واجهات UI/UX</div>
-    <div class="card">تطوير مواقع ويب</div>
-    <div class="card">قواعد بيانات</div>
-  </div>
-</section>
+      galleryItems.forEach((item, index) => {
+        let html = '';
 
-<!-- Gallery -->
-<section class="section" id="gallery">
-  <h2>معرض الأعمال</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="https://picsum.photos/400/300?1"></div>
-    <div class="gallery-item"><img src="https://picsum.photos/400/300?2"></div>
-    <div class="gallery-item"><img src="https://picsum.photos/400/300?3"></div>
-  </div>
-</section>
+        if (template === 'modern') {
+          html = `
+            <div class="gallery-item-modern" onclick="openModal(${index})">
+              <div class="emoji-large">${item.emoji}</div>
+            </div>
+          `;
+        } else if (template === 'minimal') {
+          html = `
+            <div class="gallery-item-minimal" onclick="openModal(${index})">
+              <div class="content">
+                <div class="emoji-small">${item.emoji}</div>
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+              </div>
+            </div>
+          `;
+        } else if (template === 'gradient') {
+          const gradClass = `grad${(index % 6) + 1}`;
+          html = `
+            <div class="gallery-item-gradient ${gradClass}" onclick="openModal(${index})">
+              <div class="emoji-large">${item.emoji}</div>
+            </div>
+          `;
+        } else if (template === 'card') {
+          html = `
+            <div class="gallery-item-card" onclick="openModal(${index})">
+              <div class="card-header">
+                <div class="card-emoji">${item.emoji}</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">${item.title}</div>
+                <div class="card-desc">${item.description}</div>
+              </div>
+            </div>
+          `;
+        } else if (template === 'animated') {
+          html = `
+            <div class="gallery-item-animated" onclick="openModal(${index})">
+              <div class="background">${item.emoji}</div>
+            </div>
+          `;
+        }
 
-<!-- Skills -->
-<section class="section" id="skills">
-  <h2>المهارات</h2>
-  <div class="skill">HTML
-    <div class="progress"><div class="progress-bar" style="width:90%"></div></div>
-  </div>
-  <div class="skill">CSS
-    <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
-  </div>
-  <div class="skill">JavaScript
-    <div class="progress"><div class="progress-bar" style="width:80%"></div></div>
-  </div>
-</section>
+        grid.innerHTML += html;
+      });
+    }
 
-<!-- Contact -->
-<section class="section" id="contact">
-  <h2>تواصل معي</h2>
-  <p>📧 alaadinadam@gmail.com</p>
-  <p>📱 0112831170</p>
-</section>
+    // Switch template
+    function switchTemplate(template) {
+      currentTemplate = template;
+      renderGallery(template);
 
-<!-- Footer -->
-<footer>
-  © 2026 علاء الدين - جميع الحقوق محفوظة
-</footer>
+      // Update button states
+      const buttons = document.querySelectorAll('.template-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active-template');
+        btn.style.background = '#e8eef5';
+        btn.style.color = '#2d3748';
+      });
+      event.target.classList.add('active-template');
+      event.target.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
+      event.target.style.color = 'white';
+    }
 
-<script>
-function openSidebar(){
-  document.getElementById("sidebar").classList.add("active");
-  document.getElementById("overlay").classList.add("show");
-}
+    // Dashboard functions
+    function showAddModal(type) {
+      currentItemType = type;
+      const titles = {
+        'project': 'إضافة مشروع جديد',
+        'skill': 'إضافة مهارة جديدة',
+        'service': 'إضافة خدمة جديدة'
+      };
+      document.getElementById('modal-title').textContent = titles[type];
+      document.getElementById('add-modal').classList.add('show');
+    }
 
-function closeSidebar(){
-  document.getElementById("sidebar").classList.remove("active");
-  document.getElementById("overlay").classList.remove("show");
-}
-</script>
+    function closeAddModal() {
+      document.getElementById('add-modal').classList.remove('show');
+      document.getElementById('add-form').reset();
+    }
 
-</body>
+    async function handleAddSubmit(event) {
+      event.preventDefault();
+
+      const emoji = document.getElementById('item-emoji').value;
+      const title = document.getElementById('item-title').value;
+      const description = document.getElementById('item-description').value;
+      const details = document.getElementById('item-details').value;
+
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'جاري الحفظ...';
+
+      try {
+        const result = await window.dataSdk.create({
+          type: currentItemType,
+          title,
+          description,
+          details,
+          emoji,
+          createdAt: new Date().toISOString()
+        });
+
+        if (result.isOk) {
+          galleryItems.push({ title, description, details, emoji, type: 'custom' });
+          renderGallery(currentTemplate);
+          closeAddModal();
+          updateStats();
+        }
+      } catch (error) {
+        console.error('خطأ:', error);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '✓ حفظ';
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('projects-count').textContent = galleryItems.length;
+    }
+
+    // Initialize Data SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        const messagesList = document.getElementById('messages-list');
+        const messagesCount = data.filter(item => !item.type || item.type === 'message').length;
+        
+        if (messagesCount > 0) {
+          let html = '';
+          data.forEach(item => {
+            if (!item.type || item.type === 'message') {
+              html += `
+                <div style="padding: 1.2rem; border-bottom: 1px solid #e5e7eb; background: #f9fafb; border-radius: 8px; margin-bottom: 0.5rem;">
+                  <p style="font-weight: 600; color: #2d3748; margin-bottom: 0.3rem;">${item.name}</p>
+                  <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.5rem;">${item.email}</p>
+                  <p style="color: #4b5563; line-height: 1.6;">${item.message}</p>
+                  <p style="color: #9ca3af; font-size: 0.8rem; margin-top: 0.5rem;">📅 ${new Date(item.createdAt).toLocaleDateString('ar-EG')}</p>
+                </div>
+              `;
+            }
+          });
+          messagesList.innerHTML = html;
+        }
+
+        document.getElementById('messages-count').textContent = messagesCount;
+        updateStats();
+      }
+    };
+
+    // Initialize Element SDK
+    const defaultConfig = {
+      site_title: "علاء الدين - مطور ويب",
+      hero_subtitle: "مطور ويب متخصص | مبرمج قواعد بيانات",
+      about_text: "مطور ويب متخصص وخبير في قواعس البيانات. أعمل على تطوير تطبيقات ويب حديثة وقوية.",
+      gallery_title: "🖼️ معرض أعمالي"
+    };
+
+    async function initializeSDKs() {
+      // Initialize Data SDK
+      const dataResult = await window.dataSdk.init(dataHandler);
+      
+      // Initialize Element SDK
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            currentConfig = config;
+            updateUIWithConfig(config);
+          },
+          mapToCapabilities: () => ({
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["site_title", config.site_title || defaultConfig.site_title],
+            ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+            ["about_text", config.about_text || defaultConfig.about_text],
+            ["gallery_title", config.gallery_title || defaultConfig.gallery_title]
+          ])
+        });
+      }
+
+      // Render initial gallery
+      renderGallery('modern');
+      updateStats();
+    }
+
+    function updateUIWithConfig(config) {
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('about-preview').textContent = config.about_text || defaultConfig.about_text;
+      document.getElementById('about-full-text').textContent = config.about_text || defaultConfig.about_text;
+      document.getElementById('gallery-title').textContent = config.gallery_title || defaultConfig.gallery_title;
+    }
+
+    // Page Navigation
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page-section');
+      pages.forEach(page => page.classList.remove('active'));
+
+      // Remove active class from all nav links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // Show selected page
+      const selectedPage = document.getElementById(pageId);
+      if (selectedPage) {
+        selectedPage.classList.add('active');
+      }
+
+      // Add active class to clicked nav link
+      event.target.classList.add('active');
+
+      // Scroll to top
+      document.querySelector('.content-area').scrollTop = 0;
+    }
+
+    // Sidebar Functions
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('show');
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.remove('active');
+      overlay.classList.remove('show');
+    }
+
+    function showPageFromSidebar(pageId) {
+      showPage(pageId);
+      closeSidebar();
+
+      // Update sidebar menu active state
+      const sidebarLinks = document.querySelectorAll('.sidebar-menu-link');
+      sidebarLinks.forEach(link => link.classList.remove('active'));
+      event.target.closest('.sidebar-menu-link').classList.add('active');
+    }
+
+    // Gallery Modal Functions
+    function openModal(index) {
+      const item = galleryItems[index];
+      const modalBody = document.getElementById('modal-body');
+      
+      modalBody.innerHTML = `
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="font-size: 5rem; margin-bottom: 1rem;">${item.emoji}</div>
+          <h2 style="color: #0066cc; font-size: 2rem; margin-bottom: 0.5rem;">${item.title}</h2>
+          <p style="color: #666; font-size: 1.1rem; margin-bottom: 1.5rem;">${item.description}</p>
+          <p style="color: #555; line-height: 1.8; font-size: 1rem;">${item.details}</p>
+        </div>
+      `;
+      
+      document.getElementById('gallery-modal').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('gallery-modal').classList.remove('show');
+    }
+
+    // Handle Form Submission
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'جاري الإرسال...';
+
+      try {
+        const result = await window.dataSdk.create({
+          name,
+          email,
+          phone,
+          message,
+          createdAt: new Date().toISOString()
+        });
+
+        if (result.isOk) {
+          // Show success message
+          const successMsg = document.getElementById('success-message');
+          successMsg.classList.add('show');
+
+          // Reset form
+          document.getElementById('contact-form').reset();
+
+          // Hide success message after 3 seconds
+          setTimeout(() => {
+            successMsg.classList.remove('show');
+          }, 3000);
+        } else {
+          alert('حدث خطأ في إرسال الرسالة');
+        }
+      } catch (error) {
+        alert('خطأ: ' + error.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'إرسال الرسالة';
+      }
+    }
+
+    // Close modal when clicking outside of it
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeAddModal();
+      }
+    });
+
+    // Initialize SDKs when page loads
+    initializeSDKs();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d5f824eb5dc9782',t:'MTc3MjQ0NTE1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
