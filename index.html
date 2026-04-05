@@ -1,54 +1,194 @@
-<!-- Sidebar -->
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-menu">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>علاء الدين آدم - الصفحة الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: #ffd700;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #1e3c72;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3c72;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center py-4">
+      <div class="text-2xl font-bold text-blue-900">علاء الدين آدم</div>
+      <nav class="flex gap-6">
+        <a href="#about" class="nav-link text-gray-700 font-semibold">عنّي</a>
+        <a href="#projects" class="nav-link text-gray-700 font-semibold">المشاريع</a>
+        <a href="#services" class="nav-link text-gray-700 font-semibold">خدمات</a>
+        <a href="#skills" class="nav-link text-gray-700 font-semibold">مهارات</a>
+        <a href="#experience" class="nav-link text-gray-700 font-semibold">الخبرة</a>
+        <a href="#gallery" class="nav-link text-gray-700 font-semibold">المعرض</a>
+        <a href="#blog" class="nav-link text-gray-700 font-semibold">المدونة</a>
+      </nav>
+    </div>
+  </header>
 
-    <li>
-      <a class="sidebar-menu-link active" href="index.html">
-        <span class="sidebar-menu-icon">🏠</span> الرئيسية
-      </a>
-    </li>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>مرحباً، أنا علاء الدين آدم</h1>
+    <p>مطور ويب ومصمم واجهات حديثة، أقدّم حلولاً مبتكرة لمواقع وتطبيقات الإنترنت.</p>
+    <a href="#contact" class="btn-primary">تواصل معي</a>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" href="about.html">
-        <span class="sidebar-menu-icon">👤</span> عني
-      </a>
-    </li>
+  <!-- About Section -->
+  <section id="about" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="section-title">عنّي</h2>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <img src="https://via.placeholder.com/400x300" alt="علاء الدين آدم" class="rounded-xl shadow-lg">
+      <p class="text-gray-700 text-lg">
+        مطور ويب بخبرة في بناء واجهات مستخدم تفاعلية وتصميم أنظمة متكاملة. أعمل على تقديم أفضل الحلول التقنية بطريقة مبتكرة وجذابة.
+      </p>
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" href="projects.html">
-        <span class="sidebar-menu-icon">💼</span> المشاريع
-      </a>
-    </li>
+  <!-- Projects Section -->
+  <section id="projects" class="py-16 px-4 max-w-6xl mx-auto bg-gray-50 rounded-xl my-8">
+    <h2 class="section-title">المشاريع</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مشروع 1</h3>
+        <p class="text-gray-600">وصف مختصر للمشروع وما يقدمه من حلول.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مشروع 2</h3>
+        <p class="text-gray-600">وصف مختصر للمشروع وما يقدمه من حلول.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مشروع 3</h3>
+        <p class="text-gray-600">وصف مختصر للمشروع وما يقدمه من حلول.</p>
+      </div>
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" onclick="showPageFromSidebar('skills')">
-        <span class="sidebar-menu-icon">⚙️</span> المهارات
-      </a>
-    </li>
+  <!-- Services Section -->
+  <section id="services" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="section-title">خدمات</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card">تصميم واجهات مستخدم جذابة</div>
+      <div class="card">تطوير مواقع وتطبيقات متكاملة</div>
+      <div class="card">تحسين تجربة المستخدم UX/UI</div>
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" onclick="showPageFromSidebar('experience')">
-        <span class="sidebar-menu-icon">📚</span> الخبرة
-      </a>
-    </li>
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 px-4 max-w-6xl mx-auto bg-gray-50 rounded-xl my-8">
+    <h2 class="section-title">مهارات</h2>
+    <div class="grid md:grid-cols-3 gap-6 text-center">
+      <div class="card">HTML & CSS</div>
+      <div class="card">JavaScript & React</div>
+      <div class="card">Node.js & SQL</div>
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" href="services.html">
-        <span class="sidebar-menu-icon">🎯</span> الخدمات
-      </a>
-    </li>
+  <!-- Experience Section -->
+  <section id="experience" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="section-title">الخبرة</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">شركة ABC</h3>
+        <p class="text-gray-600">تطوير تطبيقات ومواقع متعددة العملاء، العمل على تحسين الأداء والتصميم.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">شركة XYZ</h3>
+        <p class="text-gray-600">تصميم واجهات مبتكرة وتحسين تجربة المستخدم في مشاريع مختلفة.</p>
+      </div>
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" onclick="showPageFromSidebar('gallery')">
-        <span class="sidebar-menu-icon">🖼️</span> معرض
-      </a>
-    </li>
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-16 px-4 max-w-6xl mx-auto bg-gray-50 rounded-xl my-8">
+    <h2 class="section-title">المعرض</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <img src="https://via.placeholder.com/300x200" class="rounded-xl shadow-lg" alt="معرض 1">
+      <img src="https://via.placeholder.com/300x200" class="rounded-xl shadow-lg" alt="معرض 2">
+      <img src="https://via.placeholder.com/300x200" class="rounded-xl shadow-lg" alt="معرض 3">
+    </div>
+  </section>
 
-    <li>
-      <a class="sidebar-menu-link" href="contact.html">
-        <span class="sidebar-menu-icon">📞</span> تواصل
-      </a>
-    </li>
+  <!-- Blog Section -->
+  <section id="blog" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="section-title">المدونة</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مقال 1</h3>
+        <p class="text-gray-600">مقدمة عن موضوع مثير في التقنية والتطوير.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مقال 2</h3>
+        <p class="text-gray-600">مقدمة عن موضوع مثير في التقنية والتطوير.</p>
+      </div>
+      <div class="card">
+        <h3 class="font-bold text-blue-900 mb-2">مقال 3</h3>
+        <p class="text-gray-600">مقدمة عن موضوع مثير في التقنية والتطوير.</p>
+      </div>
+    </div>
+  </section>
 
-  </ul>
-</aside>
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-8 text-center">
+    &copy; 2026 علاء الدين آدم - جميع الحقوق محفوظة
+  </footer>
+</body>
+</html>
