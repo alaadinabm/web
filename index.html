@@ -1,168 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>علاء الدين آدم | مطور حلول رقمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>علاء الدين آدم | معرض الأعمال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { 
             font-family: 'Readex Pro', sans-serif; 
-            background-color: #0f172a; 
-            color: #f8fafc;
+            background-color: #050505; 
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+        /* تصميم القائمة المبتكر */
+        .nav-glass {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 100px;
         }
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: #38bdf8;
-            transform: translateY(-8px);
+        /* معرض الصور المبتكر */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            cursor: pointer;
         }
-        .text-gradient {
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .gallery-item img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .hero-mesh {
-            background-image: radial-gradient(at 0% 0%, hsla(210,100%,20%,1) 0, transparent 50%), 
-                              radial-gradient(at 50% 0%, hsla(225,100%,15%,1) 0, transparent 50%);
+        .gallery-item:hover img {
+            transform: scale(1.1) rotate(2deg);
         }
-        .btn-glow {
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        .gallery-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
-        .btn-glow:hover {
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.6);
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+        /* حركة الأنيميشن */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
 
-<nav class="fixed w-full z-50 top-0 bg-slate-950/80 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-tighter">
-            <span class="text-sky-400">علاء</span> الدين
+<div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+    <nav class="nav-glass px-6 py-3 flex items-center gap-8 shadow-2xl">
+        <a href="#" class="text-emerald-400 font-bold text-xl ml-4">علاء.</a>
+        <div class="hidden md:flex gap-6 text-sm font-light text-gray-300">
+            <a href="#about" class="hover:text-emerald-400 transition-colors">عنّي</a>
+            <a href="#gallery" class="hover:text-emerald-400 transition-colors">المعرض</a>
+            <a href="#projects" class="hover:text-emerald-400 transition-colors">المشاريع</a>
+            <a href="#contact" class="hover:text-emerald-400 transition-colors">تواصل</a>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#about" class="hover:text-sky-400 transition-colors">عنّي</a>
-            <a href="#projects" class="hover:text-sky-400 transition-colors">المشاريع</a>
-            <a href="#services" class="hover:text-sky-400 transition-colors">خدمات</a>
-            <a href="#experience" class="hover:text-sky-400 transition-colors">الخبرة</a>
-            <a href="#contact" class="px-5 py-2 bg-sky-500 rounded-full text-slate-950 font-bold hover:bg-sky-400 transition-all">تواصل معي</a>
-        </div>
-    </div>
-</nav>
+        <button class="bg-emerald-500 text-black text-xs font-bold px-4 py-2 rounded-full hover:bg-emerald-400 transition-all">ابدأ مشروعك</button>
+    </nav>
+</div>
 
-<section class="pt-40 pb-20 px-6 hero-mesh text-center">
-    <div class="max-w-4xl mx-auto">
-        <span class="px-4 py-2 rounded-full bg-sky-500/10 text-sky-400 text-sm font-semibold mb-6 inline-block border border-sky-500/20">متاح للمشاريع الجديدة</span>
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">أصنع <span class="text-gradient">تجارب رقمية</span> تخطف الأنظار</h1>
-        <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">أنا علاء الدين آدم، مطور ويب متخصص في بناء واجهات عصرية وحلول تقنية مبتكرة تجمع بين الجمال والأداء.</p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#projects" class="btn-glow px-8 py-4 bg-sky-500 text-slate-950 font-bold rounded-2xl hover:scale-105 transition-transform">تصفح أعمالي</a>
-            <a href="#about" class="px-8 py-4 glass-card rounded-2xl font-bold hover:bg-white/10">اكتشف المزيد</a>
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
+    <div class="absolute w-96 h-96 bg-emerald-600/10 blur-[120px] rounded-full top-20 -z-10"></div>
+    <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
+        مصمم <span class="text-emerald-500 italic">رقمي</span> <br> ومطور واجهات
+    </h1>
+    <p class="text-gray-400 max-w-xl text-lg mb-10 leading-relaxed">
+        أدمج بين الفن والبرمجة لخلق تجارب لا تُنسى. مرحباً بك في عالمي الخاص حيث التفاصيل هي كل شيء.
+    </p>
+    <div class="floating">
+        <div class="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center p-1">
+            <div class="w-1 h-2 bg-emerald-500 rounded-full"></div>
         </div>
     </div>
 </section>
 
-<section id="about" class="py-24 px-6 max-w-7xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="relative">
-            <div class="absolute -inset-4 bg-sky-500/20 blur-3xl rounded-full"></div>
-            <img src="https://via.placeholder.com/600x500" alt="علاء الدين" class="relative rounded-3xl border border-white/10 shadow-2xl">
-        </div>
-        <div>
-            <h2 class="text-3xl font-bold mb-6">من هو <span class="text-sky-400">علاء الدين آدم؟</span></h2>
-            <p class="text-slate-400 text-lg leading-relaxed mb-8">
-                شغوف بتحويل الأفكار المعقدة إلى واجهات بسيطة وسهلة الاستخدام. بخبرة تمتد لسنوات في تطوير الويب، أركز على التفاصيل الدقيقة التي تصنع الفارق بين الموقع الجيد والموقع الاستثنائي.
-            </p>
-            <div class="grid grid-cols-2 gap-6">
-                <div class="p-4 glass-card rounded-2xl">
-                    <div class="text-sky-400 font-bold text-2xl mb-1">+50</div>
-                    <div class="text-sm text-slate-500">مشروع مكتمل</div>
-                </div>
-                <div class="p-4 glass-card rounded-2xl">
-                    <div class="text-sky-400 font-bold text-2xl mb-1">+4</div>
-                    <div class="text-sm text-slate-500">سنوات خبرة</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="projects" class="py-24 px-6 bg-slate-900/50">
-    <div class="max-w-7xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4">أحدث المشاريع</h2>
-        <p class="text-slate-400">نماذج من أعمالي التي تدمج بين الابتكار والتقنية</p>
-    </div>
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="glass-card rounded-3xl overflow-hidden group">
-            <div class="h-48 bg-slate-800 relative overflow-hidden">
-                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-                <h3 class="text-xl font-bold mb-3">منصة إي-كومرس</h3>
-                <p class="text-slate-500 text-sm mb-4">تصميم عصري متكامل مع لوحة تحكم ذكية.</p>
-                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
-            </div>
-        </div>
-        <div class="glass-card rounded-3xl overflow-hidden group">
-            <div class="h-48 bg-slate-800 relative overflow-hidden">
-                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-                <h3 class="text-xl font-bold mb-3">تطبيق إدارة المهام</h3>
-                <p class="text-slate-500 text-sm mb-4">واجهة مستخدم تركز على الإنتاجية والبساطة.</p>
-                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
-            </div>
-        </div>
-        <div class="glass-card rounded-3xl overflow-hidden group">
-            <div class="h-48 bg-slate-800 relative overflow-hidden">
-                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-                <h3 class="text-xl font-bold mb-3">محفظة أعمال فنية</h3>
-                <p class="text-slate-500 text-sm mb-4">عرض المشاريع بطريقة تفاعلية جذابة.</p>
-                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="skills" class="py-24 px-6 max-w-7xl mx-auto">
+<section id="gallery" class="py-20 px-6 max-w-7xl mx-auto">
     <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4 italic text-gradient">الأسلحة التقنية</h2>
+        <h2 class="text-3xl font-bold mb-2">معرض الأعمال</h2>
+        <div class="h-1 w-20 bg-emerald-500 mx-auto rounded-full"></div>
     </div>
-    <div class="flex flex-wrap justify-center gap-4">
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">React.js</span>
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Tailwind CSS</span>
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Node.js</span>
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">JavaScript ES6+</span>
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">UI/UX Design</span>
-        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Firebase</span>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+        <div class="gallery-item md:col-span-2 md:row-span-2">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <div class="gallery-overlay absolute inset-0 flex items-end p-8">
+                <div>
+                    <span class="text-xs text-emerald-400 uppercase tracking-widest">تطوير ويب</span>
+                    <h3 class="text-xl font-bold">منصات تجارة حديثة</h3>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-item md:row-span-2">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <div class="gallery-overlay absolute inset-0 flex items-end p-6">
+                <h3 class="text-lg font-bold">برمجة سحابية</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <div class="gallery-overlay absolute inset-0 flex items-end p-6">
+                <h3 class="text-lg font-bold">واجهات UI</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <div class="gallery-overlay absolute inset-0 flex items-end p-6">
+                <h3 class="text-lg font-bold">تطبيقات جوال</h3>
+            </div>
+        </div>
     </div>
 </section>
 
-<section id="contact" class="py-24 px-6">
-    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-12 text-center border-sky-500/20 shadow-2xl shadow-sky-500/5">
-        <h2 class="text-4xl font-bold mb-6">هل لديك فكرة مشروع؟</h2>
-        <p class="text-slate-400 mb-10 text-lg">أنا متاح حالياً للمشاريع الحرة. دعنا نتحدث حول كيف يمكنني مساعدتك في تحقيق أهدافك الرقمية.</p>
-        <a href="mailto:alaadinadam@gmail.com" class="btn-glow inline-block px-10 py-5 bg-sky-500 text-slate-950 font-bold rounded-2xl hover:scale-105 transition-all text-xl">ابدأ المشروع الآن</a>
+<section id="contact" class="py-24 bg-[#0a0a0a]">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-8">هل أنت مستعد لنقل فكرتك للواقع؟</h2>
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="mailto:alaadinadam@gmail.com" class="px-10 py-4 bg-emerald-500 text-black font-bold rounded-2xl hover:bg-emerald-400 hover:-rotate-2 transition-all">إرسال بريد إلكتروني</a>
+            <a href="#" class="px-10 py-4 border border-white/20 rounded-2xl font-bold hover:bg-white/5 transition-all">واتساب</a>
+        </div>
     </div>
 </section>
 
-<footer class="py-12 border-t border-white/5 text-center text-slate-500 text-sm">
-    <div class="mb-6 flex justify-center gap-6">
-        <a href="#" class="hover:text-sky-400">LinkedIn</a>
-        <a href="#" class="hover:text-sky-400">GitHub</a>
-        <a href="#" class="hover:text-sky-400">Twitter</a>
-    </div>
-    <p>&copy; 2026 علاء الدين آدم. تم التصميم بكل شغف.</p>
+<footer class="py-10 text-center border-t border-white/5">
+    <p class="text-gray-500 text-sm italic">&copy; 2026 جميع الحقوق محفوظة لعلاء الدين آدم</p>
 </footer>
 
 </body>
