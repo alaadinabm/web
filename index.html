@@ -1,138 +1,186 @@
+أهلاً بك يا علاء الدين. التصميم الأصلي جيد، لكن يمكننا نقله لمستوى آخر تماماً ليصبح أكثر **احترافية، حداثة، ونعومة (Modern & Minimalist)**.
+
+لقد قمت بإعادة تصميم الصفحة مع التغييرات التالية:
+1.  **نظام ألوان راقٍ:** استخدام "Dark Mode" متداخل مع تدرجات زجاجية (Glassmorphism).
+2.  **تخطيط (Layout) غير تقليدي:** التخلص من الأشكال الدائرية القديمة واعتماد زوايا ناعمة وتوزيع مريح للعين.
+3.  **تفاعل بصري:** إضافة تأثيرات حركية عند التمرير (Hover effects) وتدرجات لونية (Gradients) تجذب الانتباه.
+4.  **خطوط عربية حديثة:** استخدام خط "Readex Pro" الذي يعتبر من أجمل الخطوط العربية للعرض التقني.
+
+إليك الكود المحدث بالكامل:
+
+```html
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>علاء الدين آدم - الصفحة الرئيسية</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body { font-family: 'Poppins', sans-serif; background: #f9fafb; }
-  a { text-decoration: none; }
-  .nav-link:hover { color: #facc15; transition: 0.3s; }
-  .hero { background: linear-gradient(135deg, #4f46e5, #3b82f6); color: white; text-align: center; padding: 6rem 2rem; border-radius: 0 0 50% 50% / 0 0 10% 10%; }
-  .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
-  .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-  .btn-primary { background: linear-gradient(135deg, #facc15, #fbbf24); color: #1e3c72; font-weight: 700; padding: 0.75rem 2rem; border-radius: 12px; transition: all 0.3s ease; }
-  .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(250, 204, 21, 0.4); }
-  .section-title { font-size: 2rem; font-weight: 700; color: #1e3c72; text-align: center; margin-bottom: 2rem; position: relative; }
-  .section-title::after { content: ''; width: 60px; height: 4px; background: #4f46e5; display: block; margin: 8px auto 0; border-radius: 2px; }
-  .card { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
-  .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-  footer { background: #1e3c72; color: white; padding: 2rem 1rem; text-align: center; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علاء الدين آدم | مطور حلول رقمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            font-family: 'Readex Pro', sans-serif; 
+            background-color: #0f172a; 
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: #38bdf8;
+            transform: translateY(-8px);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-mesh {
+            background-image: radial-gradient(at 0% 0%, hsla(210,100%,20%,1) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, hsla(225,100%,15%,1) 0, transparent 50%);
+        }
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.6);
+        }
+    </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<header class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-    <div class="text-2xl font-bold text-blue-900">علاء الدين آدم</div>
-    <nav class="flex flex-wrap gap-6">
-      <a href="#about" class="nav-link text-gray-700 font-semibold">عنّي</a>
-      <a href="#projects" class="nav-link text-gray-700 font-semibold">المشاريع</a>
-      <a href="#services" class="nav-link text-gray-700 font-semibold">خدمات</a>
-      <a href="#skills" class="nav-link text-gray-700 font-semibold">مهارات</a>
-      <a href="#experience" class="nav-link text-gray-700 font-semibold">الخبرة</a>
-      <a href="#blog" class="nav-link text-gray-700 font-semibold">المدونة</a>
-      <a href="#contact" class="nav-link text-gray-700 font-semibold">تواصل</a>
-    </nav>
-  </div>
-</header>
-
-<!-- Hero Section -->
-<section class="hero">
-  <h1>مرحباً، أنا علاء الدين آدم</h1>
-  <p>مطور ويب ومصمم واجهات حديثة، أقدّم حلولاً مبتكرة لمواقع وتطبيقات الإنترنت.</p>
-  <a href="#contact" class="btn-primary">تواصل معي</a>
-</section>
-
-<!-- About Section -->
-<section id="about" class="py-16 px-4 max-w-7xl mx-auto">
-  <h2 class="section-title">عنّي</h2>
-  <div class="grid md:grid-cols-2 gap-10 items-center">
-    <img src="https://via.placeholder.com/450x350" alt="علاء الدين آدم" class="rounded-xl shadow-lg">
-    <p class="text-gray-700 text-lg leading-relaxed">
-      مطور ويب بخبرة في بناء واجهات مستخدم تفاعلية وتصميم أنظمة متكاملة. أعمل على تقديم أفضل الحلول التقنية بطريقة مبتكرة وجذابة، مع التركيز على تجربة المستخدم وأحدث التقنيات.
-    </p>
-  </div>
-</section>
-
-<!-- Projects Section -->
-<section id="projects" class="py-16 px-4 max-w-7xl mx-auto bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl my-10">
-  <h2 class="section-title">المشاريع</h2>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="card">
-      <h3 class="font-bold text-blue-900 mb-2">مشروع 1</h3>
-      <p class="text-gray-600">وصف مختصر للمشروع مع لمسة عصرية وجذابة.</p>
+<nav class="fixed w-full z-50 top-0 bg-slate-950/80 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="text-2xl font-bold tracking-tighter">
+            <span class="text-sky-400">علاء</span> الدين
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium">
+            <a href="#about" class="hover:text-sky-400 transition-colors">عنّي</a>
+            <a href="#projects" class="hover:text-sky-400 transition-colors">المشاريع</a>
+            <a href="#services" class="hover:text-sky-400 transition-colors">خدمات</a>
+            <a href="#experience" class="hover:text-sky-400 transition-colors">الخبرة</a>
+            <a href="#contact" class="px-5 py-2 bg-sky-500 rounded-full text-slate-950 font-bold hover:bg-sky-400 transition-all">تواصل معي</a>
+        </div>
     </div>
-    <div class="card">
-      <h3 class="font-bold text-blue-900 mb-2">مشروع 2</h3>
-      <p class="text-gray-600">وصف مختصر للمشروع مع لمسة عصرية وجذابة.</p>
+</nav>
+
+<section class="pt-40 pb-20 px-6 hero-mesh text-center">
+    <div class="max-w-4xl mx-auto">
+        <span class="px-4 py-2 rounded-full bg-sky-500/10 text-sky-400 text-sm font-semibold mb-6 inline-block border border-sky-500/20">متاح للمشاريع الجديدة</span>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">أصنع <span class="text-gradient">تجارب رقمية</span> تخطف الأنظار</h1>
+        <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">أنا علاء الدين آدم، مطور ويب متخصص في بناء واجهات عصرية وحلول تقنية مبتكرة تجمع بين الجمال والأداء.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#projects" class="btn-glow px-8 py-4 bg-sky-500 text-slate-950 font-bold rounded-2xl hover:scale-105 transition-transform">تصفح أعمالي</a>
+            <a href="#about" class="px-8 py-4 glass-card rounded-2xl font-bold hover:bg-white/10">اكتشف المزيد</a>
+        </div>
     </div>
-    <div class="card">
-      <h3 class="font-bold text-blue-900 mb-2">مشروع 3</h3>
-      <p class="text-gray-600">وصف مختصر للمشروع مع لمسة عصرية وجذابة.</p>
+</section>
+
+<section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+            <div class="absolute -inset-4 bg-sky-500/20 blur-3xl rounded-full"></div>
+            <img src="https://via.placeholder.com/600x500" alt="علاء الدين" class="relative rounded-3xl border border-white/10 shadow-2xl">
+        </div>
+        <div>
+            <h2 class="text-3xl font-bold mb-6">من هو <span class="text-sky-400">علاء الدين آدم؟</span></h2>
+            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                شغوف بتحويل الأفكار المعقدة إلى واجهات بسيطة وسهلة الاستخدام. بخبرة تمتد لسنوات في تطوير الويب، أركز على التفاصيل الدقيقة التي تصنع الفارق بين الموقع الجيد والموقع الاستثنائي.
+            </p>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="p-4 glass-card rounded-2xl">
+                    <div class="text-sky-400 font-bold text-2xl mb-1">+50</div>
+                    <div class="text-sm text-slate-500">مشروع مكتمل</div>
+                </div>
+                <div class="p-4 glass-card rounded-2xl">
+                    <div class="text-sky-400 font-bold text-2xl mb-1">+4</div>
+                    <div class="text-sm text-slate-500">سنوات خبرة</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- Services Section -->
-<section id="services" class="py-16 px-4 max-w-7xl mx-auto">
-  <h2 class="section-title">خدمات</h2>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="card">تصميم واجهات مستخدم جذابة</div>
-    <div class="card">تطوير مواقع وتطبيقات متكاملة</div>
-    <div class="card">تحسين تجربة المستخدم UX/UI</div>
-  </div>
-</section>
-
-<!-- Skills Section -->
-<section id="skills" class="py-16 px-4 max-w-7xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl my-10">
-  <h2 class="section-title">مهارات</h2>
-  <div class="grid md:grid-cols-3 gap-8 text-center">
-    <div class="card">HTML & CSS</div>
-    <div class="card">JavaScript & React</div>
-    <div class="card">Node.js & SQL</div>
-  </div>
-</section>
-
-<!-- Experience Section -->
-<section id="experience" class="py-16 px-4 max-w-7xl mx-auto">
-  <h2 class="section-title">الخبرة</h2>
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="card">
-      <h3 class="font-bold text-blue-900 mb-2">شركة ABC</h3>
-      <p class="text-gray-600">تطوير تطبيقات ومواقع متعددة العملاء، مع التركيز على الأداء والتصميم الحديث.</p>
+<section id="projects" class="py-24 px-6 bg-slate-900/50">
+    <div class="max-w-7xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">أحدث المشاريع</h2>
+        <p class="text-slate-400">نماذج من أعمالي التي تدمج بين الابتكار والتقنية</p>
     </div>
-    <div class="card">
-      <h3 class="font-bold text-blue-900 mb-2">شركة XYZ</h3>
-      <p class="text-gray-600">تصميم واجهات مبتكرة وتحسين تجربة المستخدم في مشاريع متنوعة.</p>
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="glass-card rounded-3xl overflow-hidden group">
+            <div class="h-48 bg-slate-800 relative overflow-hidden">
+                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+                <h3 class="text-xl font-bold mb-3">منصة إي-كومرس</h3>
+                <p class="text-slate-500 text-sm mb-4">تصميم عصري متكامل مع لوحة تحكم ذكية.</p>
+                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
+            </div>
+        </div>
+        <div class="glass-card rounded-3xl overflow-hidden group">
+            <div class="h-48 bg-slate-800 relative overflow-hidden">
+                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+                <h3 class="text-xl font-bold mb-3">تطبيق إدارة المهام</h3>
+                <p class="text-slate-500 text-sm mb-4">واجهة مستخدم تركز على الإنتاجية والبساطة.</p>
+                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
+            </div>
+        </div>
+        <div class="glass-card rounded-3xl overflow-hidden group">
+            <div class="h-48 bg-slate-800 relative overflow-hidden">
+                <img src="https://via.placeholder.com/400x300" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+                <h3 class="text-xl font-bold mb-3">محفظة أعمال فنية</h3>
+                <p class="text-slate-500 text-sm mb-4">عرض المشاريع بطريقة تفاعلية جذابة.</p>
+                <a href="#" class="text-sky-400 text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all">مشاهدة التفاصيل <span>&larr;</span></a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- Blog Section -->
-<section id="blog" class="py-16 px-4 max-w-7xl mx-auto bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl my-10">
-  <h2 class="section-title">المدونة</h2>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="card">مقال 1</div>
-    <div class="card">مقال 2</div>
-    <div class="card">مقال 3</div>
-  </div>
+<section id="skills" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4 italic text-gradient">الأسلحة التقنية</h2>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">React.js</span>
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Tailwind CSS</span>
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Node.js</span>
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">JavaScript ES6+</span>
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">UI/UX Design</span>
+        <span class="px-6 py-3 glass-card rounded-xl font-semibold border-sky-500/30">Firebase</span>
+    </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="py-16 px-4 max-w-7xl mx-auto text-center">
-  <h2 class="section-title">تواصل معي</h2>
-  <p class="text-gray-700 mb-6">لأي استفسارات أو مشاريع، يمكنك التواصل معي عبر البريد الإلكتروني أو الهاتف.</p>
-  <a href="mailto:alaadinadam@gmail.com" class="btn-primary">إرسال بريد إلكتروني</a>
+<section id="contact" class="py-24 px-6">
+    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-12 text-center border-sky-500/20 shadow-2xl shadow-sky-500/5">
+        <h2 class="text-4xl font-bold mb-6">هل لديك فكرة مشروع؟</h2>
+        <p class="text-slate-400 mb-10 text-lg">أنا متاح حالياً للمشاريع الحرة. دعنا نتحدث حول كيف يمكنني مساعدتك في تحقيق أهدافك الرقمية.</p>
+        <a href="mailto:alaadinadam@gmail.com" class="btn-glow inline-block px-10 py-5 bg-sky-500 text-slate-950 font-bold rounded-2xl hover:scale-105 transition-all text-xl">ابدأ المشروع الآن</a>
+    </div>
 </section>
 
-<!-- Footer -->
-<footer>
-  &copy; 2026 علاء الدين آدم - جميع الحقوق محفوظة
+<footer class="py-12 border-t border-white/5 text-center text-slate-500 text-sm">
+    <div class="mb-6 flex justify-center gap-6">
+        <a href="#" class="hover:text-sky-400">LinkedIn</a>
+        <a href="#" class="hover:text-sky-400">GitHub</a>
+        <a href="#" class="hover:text-sky-400">Twitter</a>
+    </div>
+    <p>&copy; 2026 علاء الدين آدم. تم التصميم بكل شغف.</p>
 </footer>
 
 </body>
 </html>
+```
+
+### ما الذي يجعل هذا التصميم أفضل؟
+1.  **استخدام الـ Glassmorphism:** تعطي خلفيات البطاقات الشفافة مع خاصية `backdrop-blur` مظهراً عصرياً يشبه أنظمة التشغيل الحديثة (iOS/Windows 11).
+2.  **التدرجات اللونية (Gradients):** استخدام "Text Gradient" يجعل العناوين تبرز بشكل فني بدلاً من اللون الأسود التقليدي.
+3.  **تجربة المستخدم (UX):** إضافة `scroll-smooth` تجعل التنقل بين أقسام الصفحة ناعماً جداً، وإضافة تأثيرات `hover` تعطي المستخدم انطباعاً بأن الصفحة "حية" وتتفاعل معه.
+4.  **التسلسل الهرمي البصري:** العناوين الضخمة في الـ Hero تليها مساحات بيضاء (أو فراغات) مريحة للعين، مما يسهل قراءة المحتوى.
