@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عني | علاء الدين آدم</title>
+<title>تواصل | علاء الدين آدم</title>
 
-<!-- Google Font -->
+<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 
 <!-- Tailwind -->
@@ -28,95 +28,80 @@ body {
     <h1 class="text-xl font-extrabold text-blue-700">علاء الدين آدم</h1>
     <nav class="space-x-4 space-x-reverse text-gray-700 font-semibold">
       <a href="index.html" class="hover:text-blue-600">الرئيسية</a>
-      <a href="about.html" class="text-blue-600">عني</a>
+      <a href="about.html" class="hover:text-blue-600">عني</a>
       <a href="projects.html" class="hover:text-blue-600">المشاريع</a>
-      <a href="contact.html" class="hover:text-blue-600">تواصل</a>
+      <a href="contact.html" class="text-blue-600">تواصل</a>
     </nav>
   </div>
 </header>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-20 text-center">
-  <h2 class="text-4xl font-extrabold mb-4">من أنا؟</h2>
-  <p class="text-lg max-w-2xl mx-auto opacity-90">
-    مطور برمجيات وصانع حلول تقنية مبتكرة
-  </p>
+  <h2 class="text-4xl font-extrabold mb-4">تواصل معي</h2>
+  <p class="opacity-90">جاهز لتحويل فكرتك إلى مشروع ناجح</p>
 </section>
 
-<!-- About Content -->
+<!-- Contact Section -->
 <section class="max-w-6xl mx-auto px-4 py-16">
 
-  <div class="grid md:grid-cols-2 gap-10 items-center">
+  <div class="grid md:grid-cols-2 gap-10">
 
-    <!-- Image -->
-    <div>
-      <img src="https://via.placeholder.com/400x400" 
-           class="rounded-2xl shadow-lg w-full" 
-           alt="علاء الدين">
+    <!-- Contact Info -->
+    <div class="space-y-6">
+      <h3 class="text-2xl font-bold text-gray-800">معلومات التواصل</h3>
+
+      <div class="bg-white p-5 rounded-xl shadow">
+        <p class="text-gray-700"><strong>📧 البريد:</strong> alaadinadam@gmail.com</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow">
+        <p class="text-gray-700"><strong>📞 الهاتف:</strong> 0112831170</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow">
+        <p class="text-gray-700"><strong>📍 الموقع:</strong> السودان</p>
+      </div>
+
+      <div class="bg-blue-100 p-5 rounded-xl">
+        <p class="text-blue-700">
+          يمكنك التواصل معي في أي وقت، وسأرد عليك في أقرب فرصة.
+        </p>
+      </div>
     </div>
 
-    <!-- Text -->
-    <div>
-      <h3 class="text-2xl font-bold text-gray-800 mb-4">نبذة احترافية</h3>
-      <p class="text-gray-600 leading-8">
-        مطور برمجيات ومدير نظم تقنية، أجمع بين الشغف بالبرمجة والخبرة في إدارة المشاريع التقنية 
-        لتقديم حلول رقمية متكاملة. متخصص في بناء الأنظمة الإدارية، قواعد البيانات المتقدمة 
-        (PostgreSQL & SQL Server)، وتطوير واجهات الويب العصرية باستخدام Tailwind CSS.
-      </p>
+    <!-- Form -->
+    <form class="bg-white p-8 rounded-2xl shadow space-y-4">
 
-      <p class="text-gray-600 leading-8 mt-4">
-        هدفي هو تحويل الأفكار المعقدة إلى أنظمة بسيطة، آمنة، وقابلة للتوسع. سواء كنت تبحث 
-        عن نظام مالي دقيق أو منصة تجارة إلكترونية ذكية، فأنا هنا لتحويل رؤيتك إلى واقع ملموس.
-      </p>
-    </div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">أرسل رسالة</h3>
+
+      <input type="text" placeholder="اسمك"
+        class="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="email" placeholder="بريدك الإلكتروني"
+        class="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <textarea rows="5" placeholder="اكتب رسالتك..."
+        class="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+      <button
+        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+        إرسال الرسالة
+      </button>
+
+    </form>
 
   </div>
 
-</section>
-
-<!-- Features / Highlights -->
-<section class="bg-gray-100 py-16">
-  <div class="max-w-6xl mx-auto px-4">
-
-    <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">
-      ماذا أقدم؟
-    </h3>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-        <h4 class="font-bold text-blue-700 mb-2">أنظمة إدارية</h4>
-        <p class="text-gray-600">تصميم أنظمة مالية وإدارية متكاملة وسهلة الاستخدام.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-        <h4 class="font-bold text-blue-700 mb-2">تطوير ويب</h4>
-        <p class="text-gray-600">مواقع حديثة وسريعة متجاوبة مع جميع الأجهزة.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-        <h4 class="font-bold text-blue-700 mb-2">قواعد البيانات</h4>
-        <p class="text-gray-600">تصميم قواعد بيانات قوية وآمنة وقابلة للتوسع.</p>
-      </div>
-
-    </div>
-
-  </div>
 </section>
 
 <!-- CTA -->
-<section class="text-center py-16">
+<section class="text-center py-16 bg-gray-100">
   <h3 class="text-2xl font-bold mb-4 text-gray-800">
-    هل لديك مشروع؟
+    هل تريد مشروع احترافي؟
   </h3>
   <p class="text-gray-600 mb-6">
-    دعنا نحوله إلى واقع ناجح
+    دعنا نبدأ العمل معاً الآن
   </p>
-
-  <a href="contact.html"
-     class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-     تواصل معي
-  </a>
 </section>
 
 <!-- Footer -->
