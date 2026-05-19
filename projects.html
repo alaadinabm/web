@@ -1,26 +1,115 @@
-
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>المشاريع</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المشاريع | علاء الدين آدم</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #f8fafc;
+}
+</style>
+
 </head>
+
 <body>
 
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="about.html">عني</a>
-<a href="projects.html">المشاريع</a>
-<a href="contact.html">تواصل</a>
-</nav>
+<!-- Navbar -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+    <h1 class="text-xl font-extrabold text-blue-700">علاء الدين آدم</h1>
+    <nav class="space-x-4 space-x-reverse text-gray-700 font-semibold">
+      <a href="index.html" class="hover:text-blue-600">الرئيسية</a>
+      <a href="about.html" class="hover:text-blue-600">عني</a>
+      <a href="projects.html" class="text-blue-600">المشاريع</a>
+      <a href="contact.html" class="hover:text-blue-600">تواصل</a>
+    </nav>
+  </div>
+</header>
 
-<section>
-<h1>مشاريعي</h1><p>سيتم تحميل المشاريع من قاعدة البيانات لاحقاً.</p>
+<!-- Hero -->
+<section class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white py-20 text-center">
+  <h2 class="text-4xl font-extrabold mb-4">مشاريعي</h2>
+  <p class="opacity-90">أعمالي وتجربتي في تطوير الأنظمة والتطبيقات</p>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="main.js"></script>
+<!-- Projects -->
+<section class="max-w-6xl mx-auto px-4 py-16">
+
+  <div class="grid md:grid-cols-3 gap-8">
+
+    <!-- Project Card -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden">
+      <img src="https://via.placeholder.com/400x200" class="w-full">
+      <div class="p-5">
+        <h3 class="font-bold text-lg text-blue-700 mb-2">نظام مبيعات</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          نظام متكامل لإدارة المبيعات والمخزون باستخدام SQL Server.
+        </p>
+        <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">VB.NET</span>
+      </div>
+    </div>
+
+    <!-- Project Card -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden">
+      <img src="https://via.placeholder.com/400x200" class="w-full">
+      <div class="p-5">
+        <h3 class="font-bold text-lg text-blue-700 mb-2">موقع تعريفي</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          موقع شخصي احترافي باستخدام HTML و Tailwind CSS.
+        </p>
+        <span class="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">Frontend</span>
+      </div>
+    </div>
+
+    <!-- Project Card -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden">
+      <img src="https://via.placeholder.com/400x200" class="w-full">
+      <div class="p-5">
+        <h3 class="font-bold text-lg text-blue-700 mb-2">تطبيق دردشة</h3>
+        <p class="text-gray-600 text-sm mb-3">
+          تطبيق محادثة باستخدام Supabase و JavaScript.
+        </p>
+        <span class="text-xs bg-purple-100 text-purple-600 px-3 py-1 rounded-full">Realtime</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Empty State (لو مافي مشاريع) -->
+<section class="text-center py-10">
+  <p class="text-gray-500">سيتم تحميل المشاريع من قاعدة البيانات لاحقاً...</p>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-16 bg-gray-100">
+  <h3 class="text-2xl font-bold mb-4 text-gray-800">
+    هل لديك فكرة مشروع؟
+  </h3>
+  <p class="text-gray-600 mb-6">
+    دعنا نحولها إلى تطبيق حقيقي
+  </p>
+
+  <a href="contact.html"
+     class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+     تواصل معي
+  </a>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white text-center py-6">
+  © 2026 علاء الدين آدم - جميع الحقوق محفوظة
+</footer>
 
 </body>
 </html>
