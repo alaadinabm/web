@@ -1,27 +1,128 @@
-
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>عني</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عني | علاء الدين آدم</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #f8fafc;
+}
+</style>
+
 </head>
+
 <body>
 
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="about.html">عني</a>
-<a href="projects.html">المشاريع</a>
-<a href="contact.html">تواصل</a>
-</nav>
+<!-- Navbar -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+    <h1 class="text-xl font-extrabold text-blue-700">علاء الدين آدم</h1>
+    <nav class="space-x-4 space-x-reverse text-gray-700 font-semibold">
+      <a href="index.html" class="hover:text-blue-600">الرئيسية</a>
+      <a href="about.html" class="text-blue-600">عني</a>
+      <a href="projects.html" class="hover:text-blue-600">المشاريع</a>
+      <a href="contact.html" class="hover:text-blue-600">تواصل</a>
+    </nav>
+  </div>
+</header>
 
-<section>
-<h1>نبذة عني</h1><p>مطور برمجيات ومدير نظم تقنية"
-"أجمع بين الشغف بالبرمجة والخبرة في إدارة المشاريع التقنية لتقديم حلول رقمية متكاملة. متخصص في بناء الأنظمة الإدارية، قواعد البيانات المتقدمة (PostgreSQL & SQL Server)، وتطوير واجهات الويب العصرية باستخدام Tailwind CSS. هدفي هو تحويل الأفكار المعقدة إلى أنظمة بسيطة، آمنة، وقابلة للتوسع. سواء كنت تبحث عن نظام مالي دقيق أو منصة تجارة إلكترونية ذكية، فأنا هنا لتحويل رؤيتك إلى واقع برمجي ملموس.".</p>
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-20 text-center">
+  <h2 class="text-4xl font-extrabold mb-4">من أنا؟</h2>
+  <p class="text-lg max-w-2xl mx-auto opacity-90">
+    مطور برمجيات وصانع حلول تقنية مبتكرة
+  </p>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="main.js"></script>
+<!-- About Content -->
+<section class="max-w-6xl mx-auto px-4 py-16">
+
+  <div class="grid md:grid-cols-2 gap-10 items-center">
+
+    <!-- Image -->
+    <div>
+      <img src="https://via.placeholder.com/400x400" 
+           class="rounded-2xl shadow-lg w-full" 
+           alt="علاء الدين">
+    </div>
+
+    <!-- Text -->
+    <div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">نبذة احترافية</h3>
+      <p class="text-gray-600 leading-8">
+        مطور برمجيات ومدير نظم تقنية، أجمع بين الشغف بالبرمجة والخبرة في إدارة المشاريع التقنية 
+        لتقديم حلول رقمية متكاملة. متخصص في بناء الأنظمة الإدارية، قواعد البيانات المتقدمة 
+        (PostgreSQL & SQL Server)، وتطوير واجهات الويب العصرية باستخدام Tailwind CSS.
+      </p>
+
+      <p class="text-gray-600 leading-8 mt-4">
+        هدفي هو تحويل الأفكار المعقدة إلى أنظمة بسيطة، آمنة، وقابلة للتوسع. سواء كنت تبحث 
+        عن نظام مالي دقيق أو منصة تجارة إلكترونية ذكية، فأنا هنا لتحويل رؤيتك إلى واقع ملموس.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Features / Highlights -->
+<section class="bg-gray-100 py-16">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">
+      ماذا أقدم؟
+    </h3>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h4 class="font-bold text-blue-700 mb-2">أنظمة إدارية</h4>
+        <p class="text-gray-600">تصميم أنظمة مالية وإدارية متكاملة وسهلة الاستخدام.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h4 class="font-bold text-blue-700 mb-2">تطوير ويب</h4>
+        <p class="text-gray-600">مواقع حديثة وسريعة متجاوبة مع جميع الأجهزة.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h4 class="font-bold text-blue-700 mb-2">قواعد البيانات</h4>
+        <p class="text-gray-600">تصميم قواعد بيانات قوية وآمنة وقابلة للتوسع.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-16">
+  <h3 class="text-2xl font-bold mb-4 text-gray-800">
+    هل لديك مشروع؟
+  </h3>
+  <p class="text-gray-600 mb-6">
+    دعنا نحوله إلى واقع ناجح
+  </p>
+
+  <a href="contact.html"
+     class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+     تواصل معي
+  </a>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white text-center py-6">
+  © 2026 علاء الدين آدم - جميع الحقوق محفوظة
+</footer>
 
 </body>
 </html>
