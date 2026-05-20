@@ -10,28 +10,30 @@
 
 <script>
 tailwind.config = {
-theme: {
-extend: {
-colors: {
-primary: '#1E40AF',
-secondary: '#F97316',
-}
-}
-}
+  theme: {
+    extend: {
+      colors: {
+        primary: '#1E40AF',
+        secondary: '#F97316',
+        textDark: '#111827',
+        textLight: '#6B7280'
+      }
+    }
+  }
 }
 </script>
 
 <style>
 body {
-font-family: 'Readex Pro', sans-serif;
+  font-family: 'Readex Pro', sans-serif;
 }
 
 /* Sidebar */
 .sidebar {
-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .sidebar-hidden {
-transform: translateX(100%);
+  transform: translateX(100%);
 }
 </style>
 </head>
@@ -42,12 +44,10 @@ transform: translateX(100%);
 <header class="sticky top-0 bg-white shadow z-50">
 <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
 
-<!-- LOGO -->
 <h1 class="text-xl font-bold text-primary">
 علاء <span class="text-secondary">الدين</span>
 </h1>
 
-<!-- NAV DESKTOP -->
 <nav class="hidden md:flex gap-6 font-semibold">
 <a href="index.html" class="hover:text-blue-600">الرئيسية</a> 
 <a href="about.html" class="hover:text-blue-600">عني</a>
@@ -55,7 +55,6 @@ transform: translateX(100%);
 <a href="contact.html" class="text-blue-600">تواصل</a> 
 </nav>
 
-<!-- BUTTON -->
 <div class="flex items-center gap-3">
 <button onclick="toggleMenu()" class="md:hidden text-2xl">☰</button>
 <a href="#contact" class="hidden md:block bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-800">
@@ -68,10 +67,10 @@ transform: translateX(100%);
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="hidden bg-white shadow-md p-4 md:hidden">
-<a href=" index.html" class="block py-2">الرئيسية</a>
+<a href="index.html" class="block py-2">الرئيسية</a>
 <a href="about.html" class="block py-2">عني</a>
-<a href=" projects.html" class="block py-2">المشاريع</a>
-<a href="contact.html"  class="block py-2">تواصل</a>
+<a href="projects.html" class="block py-2">المشاريع</a>
+<a href="contact.html" class="block py-2">تواصل</a>
 </div>
 
 <!-- SIDEBAR -->
@@ -81,16 +80,42 @@ transform: translateX(100%);
 <h2 class="font-bold mb-4 text-primary">القائمة الجانبية</h2>
 
 <ul class="space-y-3">
-<li><a href="index.html" class="hover:text-blue-600">الرئيسية</a> </li>
+<li><a href="index.html" class="hover:text-blue-600">الرئيسية</a></li>
 <li><a href="#" class="block hover:text-primary">خدماتي</a></li>
 <li><a href="#" class="block hover:text-primary">الأعمال</a></li>
-<li><a href="contact.html" class="text-blue-600">تواصل</a> </li>
+<li><a href="contact.html" class="text-blue-600">تواصل</a></li>
 </ul>
 </div>
 
 <!-- HERO -->
-section class="py-24 md:py-32 px-6 bg-gray-50"> <div class="max-w-5xl mx-auto text-center"> <span class="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-primary text-xs font-bold mb-4">تصميم. تطوير. ابتكار.</span> <h1 class="text-5xl md:text-6xl font-extrabold text-textDark mb-6 leading-tight"> نحول الأفكار إلى <span class="text-primary">واقع رقمي</span> جذاب </h1> <p class="text-xl text-textLight max-w-2xl mx-auto mb-12"> أنا علاء الدين آدم، مطور ويب ومصمم واجهات متخصص في بناء مواقع وتطبيقات عصرية تتسم بالبساطة، الأداء العالي، وتجربة المستخدم الاستثنائية. </p> <div class="flex gap-4 justify-center"> <a href="#gallery" class="px-8 py-3.5 bg-secondary text-white font-bold rounded-xl hover:bg-orange-600 transition-colors shadow"> تصفح المعرض </a> <a href="#about" class="px-8 py-3.5 bg-white text-textDark font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-sm border border-gray-100"> اكتشف المزيد </a> </div> </div> </section>
-<div class="flex justify-center gap-4">
+<section class="py-24 md:py-32 px-6 bg-gray-50">
+<div class="max-w-5xl mx-auto text-center">
+
+<span class="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-primary text-xs font-bold mb-4">
+تصميم. تطوير. ابتكار.
+</span>
+
+<h1 class="text-5xl md:text-6xl font-extrabold text-textDark mb-6 leading-tight">
+نحول الأفكار إلى <span class="text-primary">واقع رقمي</span> جذاب
+</h1>
+
+<p class="text-xl text-textLight max-w-2xl mx-auto mb-12">
+أنا علاء الدين آدم، مطور ويب ومصمم واجهات متخصص في بناء مواقع وتطبيقات عصرية.
+</p>
+
+<div class="flex gap-4 justify-center flex-wrap">
+<a href="#gallery" class="px-8 py-3.5 bg-secondary text-white font-bold rounded-xl hover:bg-orange-600 shadow">
+تصفح المعرض
+</a>
+
+<a href="#about" class="px-8 py-3.5 bg-white text-textDark font-bold rounded-xl hover:bg-gray-100 border">
+اكتشف المزيد
+</a>
+</div>
+
+</div>
+
+<div class="flex justify-center gap-4 mt-10">
 <button onclick="toggleSidebar()" class="bg-secondary text-white px-6 py-3 rounded-lg">
 القائمة الجانبية
 </button>
@@ -99,6 +124,7 @@ section class="py-24 md:py-32 px-6 bg-gray-50"> <div class="max-w-5xl mx-auto te
 مشاهدة الأعمال
 </a>
 </div>
+
 </section>
 
 <!-- GALLERY -->
@@ -155,11 +181,11 @@ section class="py-24 md:py-32 px-6 bg-gray-50"> <div class="max-w-5xl mx-auto te
 <!-- SCRIPTS -->
 <script>
 function toggleMenu() {
-document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.getElementById("mobileMenu").classList.toggle("hidden");
 }
 
 function toggleSidebar() {
-document.getElementById("sidebar").classList.toggle("sidebar-hidden");
+  document.getElementById("sidebar").classList.toggle("sidebar-hidden");
 }
 </script>
 
